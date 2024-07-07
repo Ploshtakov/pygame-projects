@@ -143,10 +143,8 @@ while running:
         elif pipes_on_screen[0][0] + SIZE_PIPE[0] == bird_x:
             score += 1
 
-    if bird_y > HEIGHT or bird_y < 0:
-        running = False
-        dead_screen()
 
+        
     # Draw
     for cloud_cords in clouds_on_screen:
         draw_clouds(cloud_cords[0], cloud_cords[1], cloud_cords[2], cloud_cords[3])
@@ -180,6 +178,11 @@ while running:
         gravity *= 1.04
         bird_angle *= 1.05
     bird_y += gravity
+    
+    if bird_y > HEIGHT:
+        bird_y = HEIGHT
+    elif bird_y < 0:
+        bird_y = 0 
 
     # Pipes
     for i in range(len(pipes_on_screen)):  # Move pipes
